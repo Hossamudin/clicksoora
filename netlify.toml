@@ -1,0 +1,25 @@
+# Netlify configuration file
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Set environment variables for the production build
+[build.environment]
+  NEXT_PUBLIC_DEMO_MODE = "true"
+
+# Redirect all requests to index.html (SPA fallback)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Add security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

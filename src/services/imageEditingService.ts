@@ -3,6 +3,8 @@
  * Handles all API calls to the image editing endpoints
  */
 
+import { isDemoMode, getSampleImageData, getSampleCostEstimation } from '@/utils/demoMode';
+
 type ImageQuality = 'standard' | 'high' | 'low' | 'medium' | 'auto';
 type ImageSize = '1024x1024' | '1792x1024' | '1024x1792' | '1536x1024' | '1024x1536' | 'auto';
 type ImageFormat = 'jpeg' | 'png' | 'webp';
@@ -51,6 +53,15 @@ function debugLog(message: string, data?: any) {
  * Edit an image using the API
  */
 export async function editImage(params: EditImageParams): Promise<EditImageResponse> {
+  // Check if we're in demo mode
+  if (isDemoMode()) {
+    console.log('Running in demo mode - returning sample edited image data');
+    return {
+      imageData: getSampleImageData(),
+      estimatedCost: getSampleCostEstimation()
+    };
+  }
+
   debugLog('ud83dude80 Starting image edit request', {
     prompt: params.prompt.substring(0, 30) + '...',
     model: params.model,

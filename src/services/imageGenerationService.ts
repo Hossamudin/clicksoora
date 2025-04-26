@@ -3,6 +3,8 @@
  * Handles all API calls to the image generation endpoints
  */
 
+import { isDemoMode, getSampleImageData, getSampleCostEstimation } from '@/utils/demoMode';
+
 type ImageQuality = 'standard' | 'high' | 'low' | 'medium' | 'auto';
 type ImageSize = '1024x1024' | '1792x1024' | '1024x1792' | '1536x1024' | '1024x1536';
 type ImageFormat = 'jpeg' | 'png' | 'webp';
@@ -148,6 +150,15 @@ export async function generateImageWithStream(
  */
 export async function generateImage(params: GenerateImageParams): Promise<GenerateImageResponse> {
   try {
+    // Check if we're in demo mode
+    if (isDemoMode()) {
+      console.log('Running in demo mode - returning sample image data');
+      return {
+        imageData: getSampleImageData(),
+        estimatedCost: getSampleCostEstimation()
+      };
+    }
+
     // Set timeout to prevent infinite loading - increased to 3 minutes
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error('Request timed out after 3 minutes. The image might still be processing.')), 180000);

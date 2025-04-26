@@ -66,17 +66,44 @@ ClickSoora is a modern Next.js application that generates and edits stunning AI 
 - **Component Images**: Up to 9 additional images for editing (plus main image)
 - **Transparent Background**: Only available with PNG and WebP formats
 
+## Demo Mode
+
+The application includes a demo mode for showcasing the UI without exposing your OpenAI API key. In demo mode:
+
+- The UI is fully functional
+- API calls are intercepted and return sample data
+- No actual OpenAI API requests are made
+
+To enable demo mode, set the environment variable:
+```
+NEXT_PUBLIC_DEMO_MODE=true
+```
+
+Demo mode is automatically enabled when no OpenAI API key is provided.
+
 ## Deployment
 
 This project can be easily deployed to Netlify or Hostinger:
 
 ### Netlify Deployment
 
+This project is configured for easy deployment to Netlify:
+
 1. Connect your GitHub repository to Netlify
-2. Add your environment variables in the Netlify dashboard
-3. Configure the build settings:
-   - Build command: `npm run build`
-   - Publish directory: `.next`
+2. Netlify will automatically detect the configuration in `netlify.toml`
+3. The site will be deployed in demo mode by default
+
+If you want to deploy a fully functional version (not recommended for public sites):
+
+1. Add your OpenAI API key in the Netlify environment variables
+2. Set `NEXT_PUBLIC_DEMO_MODE` to `false`
+
+```
+OPENAI_API_KEY=your_api_key_here
+NEXT_PUBLIC_DEMO_MODE=false
+```
+
+**Security Note:** It's generally not recommended to expose your OpenAI API key in a public deployment, as it could lead to unauthorized usage and charges.
 
 ## Project Structure
 
