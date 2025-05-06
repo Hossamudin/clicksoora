@@ -1,6 +1,13 @@
 # ClickSoora - Free AI Image Generator
 
 ClickSoora is a modern Next.js application that generates and edits stunning AI images using OpenAI's GPT Image 1 model. Built with engaging UI elements, smooth animations, and a responsive design.
+[![Watch the video](https://img.youtube.com/vi/v0N4fW-E0qk/maxresdefault.jpg)](https://youtu.be/v0N4fW-E0qk)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=v0N4fW-E0qk">
+    <img src="https://j.gifs.com/vO0xYX.gif" alt="Video Preview" width="480" height="270"/>
+  </a>
+</p>
 
 ## Features
 
